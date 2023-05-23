@@ -33,7 +33,7 @@ The Task Management Application allows users to create, update, and organize the
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/Wael-Ibn-Douma/Task-Management-Application.git`
-2. Navigate to the project directory: `cd task-management-app`
+2. Navigate to the project directory: `cd Task-Management-Application`
 3. Install dependencies: `npm install`
 
 ## Usage
