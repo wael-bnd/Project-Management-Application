@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon appp.js",
+    "start": "nodemon appp.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Wael Ibn Douma",
