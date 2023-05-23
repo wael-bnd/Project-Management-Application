@@ -1,17 +1,37 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const app = express();
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
 dotenv.config();
 
-//DB connection
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  .then(() => console.log("DB Connected"))
-  .catch((err) => console.log(err));
+const app = express();
 
-//creating node server
+// DB connection
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.error("DB Connection Error:", err));
+
+// Import routes
+const authRoutes = require("./routes/auth");
+
+// Middleware
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
+
+// Routes
+app.use("/user", authRoutes);
+
+// Creating node server
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-  console.log("a node js API listening on port : " + port);
+  console.log("Node.js API listening on port: " + port);
 });
