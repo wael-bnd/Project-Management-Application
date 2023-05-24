@@ -20,7 +20,11 @@ mongoose
 
 // Import routes
 const authRoutes = require("./routes/auth");
-
+const userRoutes = require("./routes/user");
+const {
+  requireSignin,
+  handleUnauthorizedError,
+} = require("./controllers/auth");
 // Middleware
 app.use(morgan("dev"));
 app.use(express.json());
@@ -29,7 +33,9 @@ app.use(cors());
 
 // Routes
 app.use("/user", authRoutes);
-
+app.use(requireSignin);
+app.use("/user", userRoutes);
+app.use(handleUnauthorizedError);
 // Creating node server
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

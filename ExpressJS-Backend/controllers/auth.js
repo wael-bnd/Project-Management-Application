@@ -72,4 +72,18 @@ exports.requireSignin = expressjwt({
   secret: process.env.JWT_SECRET,
   userProperty: "auth",
   algorithms: ["HS256"],
+}).unless({
+  path: [
+    // paths that should bypass authentication
+    "/user/signup",
+    "/user/sigin",
+  ],
 });
+
+exports.handleUnauthorizedError = (err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res
+      .status(401)
+      .json({ error: "Unauthorized Access: Invalid or expired token" });
+  }
+};
