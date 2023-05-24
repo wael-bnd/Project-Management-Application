@@ -48,7 +48,7 @@ exports.signin = async (req, res) => {
       expiresIn: "12h",
     });
 
-    res.cookie("t", token, { httpOnly: true });
+    res.cookie("accessToken", token, { httpOnly: true });
 
     const { _id, firstName, lastName, jobTitle } = user;
     return res.json({
@@ -64,7 +64,7 @@ exports.signin = async (req, res) => {
 };
 
 exports.signout = (req, res) => {
-  res.clearCookie("t");
+  res.clearCookie("accessToken");
   return res.json({ message: "You have successfully signed out!" });
 };
 
@@ -72,4 +72,18 @@ exports.requireSignin = expressjwt({
   secret: process.env.JWT_SECRET,
   userProperty: "auth",
   algorithms: ["HS256"],
+}).unless({
+  path: [
+    // paths that should bypass authentication
+    "/api/user/signup",
+    "/api/user/sigin",
+  ],
 });
+
+exports.handleUnauthorizedError = (err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res
+      .status(401)
+      .json({ error: "Unauthorized Access: Invalid or expired token" });
+  }
+};

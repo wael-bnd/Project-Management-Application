@@ -34,18 +34,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    lastPasswordUpdateDateTime: {
-      type: Date,
-      default: Date.now,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    timestamps: true,
   }
 );
 
