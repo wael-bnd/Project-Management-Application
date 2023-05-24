@@ -4,9 +4,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 dotenv.config();
-
 const app = express();
 
 // DB connection
@@ -21,21 +19,27 @@ mongoose
 // Import routes
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const taskRoutes = require("./routes/task");
 const {
   requireSignin,
   handleUnauthorizedError,
 } = require("./controllers/auth");
+
 // Middleware
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
-// Routes
-app.use("/user", authRoutes);
+// Public routes
+app.use("/api/user", authRoutes);
+
+// Private routes
 app.use(requireSignin);
-app.use("/user", userRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/task", taskRoutes);
 app.use(handleUnauthorizedError);
+
 // Creating node server
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
