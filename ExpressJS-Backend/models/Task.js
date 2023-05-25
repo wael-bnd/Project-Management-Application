@@ -30,7 +30,7 @@ const taskSchema = new mongoose.Schema(
       ref: "User",
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: "__v" }
 );
 
 module.exports = mongoose.model("Task", taskSchema);
