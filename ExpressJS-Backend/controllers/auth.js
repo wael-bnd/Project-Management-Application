@@ -13,6 +13,11 @@ exports.signup = async (req, res) => {
         .status(409)
         .json({ error: "User with this email already exists!" });
     }
+    if (!!req.body.role) {
+      return res.status(400).json({
+        error: "You cannot specify your role",
+      });
+    }
 
     const user = new User({ firstName, lastName, email, jobTitle, password });
     await user.save();
