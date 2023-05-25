@@ -20,6 +20,7 @@ mongoose
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const taskRoutes = require("./routes/task");
+const projectRoutes = require("./routes/project");
 const {
   requireSignin,
   handleUnauthorizedError,
@@ -38,6 +39,7 @@ app.use("/api/user", authRoutes);
 app.use(requireSignin);
 app.use("/api/user", userRoutes);
 app.use("/api/task", taskRoutes);
+app.use("/api/project", projectRoutes);
 app.use(handleUnauthorizedError);
 
 // Creating node server

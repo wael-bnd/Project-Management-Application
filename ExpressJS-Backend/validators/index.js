@@ -60,11 +60,24 @@ exports.taskValidator = [
     .optional()
     .isIn([1, 2, 3, 5, 8, 13, 20])
     .withMessage("Invalid estimation value."),
-  body("reporter").notEmpty().withMessage("Reporter is required."),
-  body("assignee")
-    .optional()
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const errorMessages = errors.array().map((error) => error.msg);
+      return res.status(400).json({ errors: errorMessages });
+    }
+    next();
+  },
+];
+exports.projectValidator = [
+  body("title").notEmpty().withMessage("title is required."),
+  body("key")
     .notEmpty()
-    .withMessage("Assignee must not be empty."),
+    .withMessage("key is required.")
+    .isLength({ min: 2, max: 5 })
+    .withMessage("key  must be between 2 and 5 characters"),
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

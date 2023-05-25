@@ -11,6 +11,10 @@ const taskSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    key: {
+      type: String,
+      required: true,
+    },
     issueType: {
       type: String,
       enum: ["story", "test", "bug"],
@@ -18,7 +22,7 @@ const taskSchema = new mongoose.Schema(
     },
     estimation: {
       type: Number,
-      enum: [1, 2, 3, 5, 8, 13, 20],
+      enum: [1, 2, 3, 5, 8, 13, 21],
     },
     reporter: {
       type: ObjectId,
@@ -30,7 +34,7 @@ const taskSchema = new mongoose.Schema(
       ref: "User",
     },
   },
-  { timestamps: true, versionKey: "__v" }
+  { timestamps: true, versionKey: false }
 );
 
 module.exports = mongoose.model("Task", taskSchema);
