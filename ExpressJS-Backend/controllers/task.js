@@ -9,8 +9,15 @@ exports.createTask = async (req, res) => {
         .status(400)
         .json({ error: "Summary and issueType are required fields." });
     }
-    const task = new Task({ summary, description, issueType, estimation });
+    const task = new Task({
+      summary,
+      description,
+      issueType,
+      estimation,
+      assignee,
+    });
     task.reporter = req.auth._id;
+    task.key = "key";
     await task.save();
 
     res.status(200).json({ message: "Task successfully created." });
