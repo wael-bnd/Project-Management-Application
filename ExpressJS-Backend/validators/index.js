@@ -1,4 +1,4 @@
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 
 const emailRegExp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3}){1,2}$/;
@@ -36,6 +36,35 @@ exports.userSignupValidator = [
       "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"
     ),
 
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const errorMessages = errors.array().map((error) => error.msg);
+      return res.status(400).json({ errors: errorMessages });
+    }
+    next();
+  },
+];
+exports.taskValidator = [
+  body("summary").notEmpty().withMessage("Summary is required."),
+  body("description")
+    .optional()
+    .isString()
+    .withMessage("Description must be a string."),
+  body("issueType")
+    .notEmpty()
+    .withMessage("IssueType is required.")
+    .isIn(["story", "test", "bug"])
+    .withMessage("Invalid issueType."),
+  body("estimation")
+    .optional()
+    .isIn([1, 2, 3, 5, 8, 13, 20])
+    .withMessage("Invalid estimation value."),
+  body("reporter").notEmpty().withMessage("Reporter is required."),
+  body("assignee")
+    .optional()
+    .notEmpty()
+    .withMessage("Assignee must not be empty."),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
