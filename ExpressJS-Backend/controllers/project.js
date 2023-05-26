@@ -104,10 +104,40 @@ exports.updateProject = async (req, res) => {
     });
   }
 };
-
-exports.projectByKey = async (req, res, next, key) => {
+exports.addMemberToProject = async (req, res) => {
   try {
-    const project = await Project.findOne({ key: key.toUpperCase() });
+    const project = req.project;
+    const isLeader = project.leader.toString() === req.auth._id.toString();
+
+    if (!isLeader) {
+      return res.status(403).json({
+        error: "You are not authorized to perform this action",
+      });
+    }
+    const { member } = req.body;
+
+    const memberNotExist = project.members.includes(member);
+    if (memberNotExist) {
+      return res.status(409).json({
+        error: "The user is already a project member.",
+      });
+    }
+    project.members.push(member);
+    project.save();
+    res.status(200).json({
+      message: "Members added successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "An error occurred while updating the project.",
+    });
+  }
+};
+
+exports.projectById = async (req, res, next, id) => {
+  try {
+    const project = await Project.findById(id);
     if (!project) {
       return res.status(404).json({
         error: "Project not found.",

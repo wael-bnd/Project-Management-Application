@@ -28,8 +28,9 @@ exports.createTask = async (req, res) => {
       project,
     });
     task.reporter = req.auth._id;
-    task.key = projectObj.key + "-" + projectObj.lastTaskNumber.toString();
     projectObj.lastTaskNumber++;
+    task.key = projectObj.key + "-" + projectObj.lastTaskNumber.toString();
+
     await projectObj.save();
     await task.save();
 
@@ -143,7 +144,7 @@ exports.setTaskReporter = async (req, res) => {
       !(selfAssign && isProjectMember && user.role === "manager")
     ) {
       return res.status(403).json({
-        error: "You are not authorized to perform this action. ",
+        error: "You are not authorized to perform this action.",
       });
     }
 
