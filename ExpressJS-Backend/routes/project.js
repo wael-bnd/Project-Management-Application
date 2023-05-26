@@ -6,9 +6,9 @@ const { projectValidator } = require("../validators");
 
 router.post("/create", projectValidator, projectController.createProject);
 router.get("/all", projectController.getAllProjects);
-router.param("projectKey", projectController.projectByKey);
-router.get("/:projectKey", projectController.getProject);
-router.put("/:projectKey", projectController.updateProject);
-router.delete("/:projectKey", projectController.deleteProject);
-
+router.param("projectId", projectController.projectById);
+router.get("/:projectId", projectController.getProject);
+router.put("/:projectId", projectController.updateProject);
+router.delete("/:projectId", projectController.deleteProject);
+router.patch("/member/add/:projectId", projectController.addMemberToProject);
 module.exports = router;
