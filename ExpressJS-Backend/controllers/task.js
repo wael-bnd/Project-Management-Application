@@ -1,23 +1,36 @@
+const Project = require("../models/Project");
 const Task = require("../models/Task");
 const User = require("../models/User");
 
 exports.createTask = async (req, res) => {
   try {
-    const { summary, description, issueType, estimation, assignee } = req.body;
-    if (!summary || !issueType) {
-      return res
-        .status(400)
-        .json({ error: "Summary and issueType are required fields." });
+    const { summary, description, issueType, estimation, assignee, project } =
+      req.body;
+    const user = await User.findById(req.auth._id);
+    const projectObj = await Project.findById(project);
+    console.log(user);
+    console.log(projectObj);
+    if (
+      (user.role !== "manager" || !projectObj.members.includes(req.auth._id)) &&
+      projectObj.leader.toString() !== req.auth._id
+    ) {
+      return res.status(403).json({
+        error: "You are not authorized to create tasks for this project",
+      });
     }
+
     const task = new Task({
       summary,
       description,
       issueType,
       estimation,
       assignee,
+      project,
     });
     task.reporter = req.auth._id;
-    task.key = "key";
+    task.key = projectObj.key + "-" + projectObj.lastTaskNumber.toString();
+    projectObj.lastTaskNumber++;
+    await projectObj.save();
     await task.save();
 
     res.status(200).json({ message: "Task successfully created." });
@@ -87,8 +100,10 @@ exports.setTaskAssignee = async (req, res) => {
     const assignee = req.body.assignee.toString();
     const isReporter = task.reporter.toString() === req.auth._id.toString();
     const selfAssign = assignee === req.auth._id.toString();
+    const project = await Project.findById(task.project);
+    const isProjectMember = project.members.includes(req.auth._id.toString());
 
-    if (!isReporter && !selfAssign) {
+    if (!isReporter && !(selfAssign && isProjectMember)) {
       return res.status(403).json({
         error:
           "You are not authorized to perform this action. You can only assign to yourself.",
@@ -119,14 +134,19 @@ exports.setTaskReporter = async (req, res) => {
     const reporter = req.body.reporter.toString();
     const isReporter = task.reporter.toString() === req.auth._id.toString();
     const selfAssign = reporter === req.auth._id.toString();
+    const user = await User.findById(reporter);
+    const project = await Project.findById(task.project);
+    const isProjectMember = project.members.includes(req.auth._id.toString());
 
-    if (!isReporter && !selfAssign) {
+    if (
+      !isReporter &&
+      !(selfAssign && isProjectMember && user.role === "manager")
+    ) {
       return res.status(403).json({
         error: "You are not authorized to perform this action. ",
       });
     }
 
-    const user = await User.findById(reporter);
     if (!user || !reporter) {
       return res.status(404).json({
         error: "User not found!",

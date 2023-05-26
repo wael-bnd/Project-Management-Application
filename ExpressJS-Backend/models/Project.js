@@ -10,6 +10,7 @@ const projectSchema = new mongoose.Schema(
     },
     key: {
       type: String,
+      unique: true,
       required: true,
     },
     leader: {
@@ -21,12 +22,6 @@ const projectSchema = new mongoose.Schema(
       {
         type: ObjectId,
         ref: "User",
-      },
-    ],
-    tasks: [
-      {
-        type: ObjectId,
-        ref: "Task",
       },
     ],
     lastTaskNumber: {

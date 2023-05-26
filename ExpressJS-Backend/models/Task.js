@@ -24,6 +24,11 @@ const taskSchema = new mongoose.Schema(
       type: Number,
       enum: [1, 2, 3, 5, 8, 13, 21],
     },
+    project: {
+      type: ObjectId,
+      ref: "Project",
+      required: true,
+    },
     reporter: {
       type: ObjectId,
       ref: "User",

@@ -1,4 +1,4 @@
-const { check, validationResult, body } = require("express-validator");
+const { validationResult, body } = require("express-validator");
 
 const emailRegExp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3}){1,2}$/;
@@ -6,19 +6,19 @@ const passwordRegExp =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/;
 
 exports.userSignupValidator = [
-  check("firstName")
+  body("firstName")
     .notEmpty()
     .withMessage("First name is required")
     .isLength({ min: 3, max: 20 })
     .withMessage("First name must be between 3 and 20 characters"),
 
-  check("lastName")
+  body("lastName")
     .notEmpty()
     .withMessage("Last name is required")
     .isLength({ min: 3, max: 20 })
     .withMessage("Last name must be between 3 and 20 characters"),
 
-  check("email")
+  body("email")
     .notEmpty()
     .withMessage("Email is required")
     .isLength({ min: 8, max: 40 })
@@ -26,7 +26,7 @@ exports.userSignupValidator = [
     .matches(emailRegExp)
     .withMessage("Email must contain a valid email address"),
 
-  check("password")
+  body("password")
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8 })
@@ -60,6 +60,7 @@ exports.taskValidator = [
     .optional()
     .isIn([1, 2, 3, 5, 8, 13, 20])
     .withMessage("Invalid estimation value."),
+  body("project").notEmpty().withMessage("Project is required."),
 
   (req, res, next) => {
     const errors = validationResult(req);
