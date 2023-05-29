@@ -136,7 +136,7 @@ exports.addMemberToProject = async (req, res) => {
   }
 };
 
-exports.removeMemberToProject = async (req, res) => {
+exports.removeMemberFromProject = async (req, res) => {
   try {
     const project = req.project;
     const isLeader = project.leader.toString() === req.auth._id.toString();
@@ -164,6 +164,21 @@ exports.removeMemberToProject = async (req, res) => {
     console.log(err);
     res.status(500).json({
       error: "An error occurred while updating the project.",
+    });
+  }
+};
+
+exports.getAllProjectMembers = async (req, res) => {
+  try {
+    const project = req.project;
+    const tasks = await User.find({ _id: { $in: project.members } });
+    res.status(200).json({
+      tasks: tasks,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "An error occurred while retrieving the project members.",
     });
   }
 };
