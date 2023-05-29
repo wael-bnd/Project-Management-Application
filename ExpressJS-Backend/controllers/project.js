@@ -1,5 +1,6 @@
 const Project = require("../models/Project");
 const User = require("../models/User");
+const Task = require("../models/Task");
 
 exports.createProject = async (req, res) => {
   try {
@@ -116,16 +117,16 @@ exports.addMemberToProject = async (req, res) => {
     }
     const { member } = req.body;
 
-    const memberNotExist = project.members.includes(member);
-    if (memberNotExist) {
+    const memberExist = project.members.includes(member);
+    if (memberExist) {
       return res.status(409).json({
         error: "The user is already a project member.",
       });
     }
     project.members.push(member);
-    project.save();
+    await project.save();
     res.status(200).json({
-      message: "Members added successfully",
+      message: "Member added successfully",
     });
   } catch (err) {
     console.log(err);
@@ -135,6 +136,52 @@ exports.addMemberToProject = async (req, res) => {
   }
 };
 
+exports.removeMemberToProject = async (req, res) => {
+  try {
+    const project = req.project;
+    const isLeader = project.leader.toString() === req.auth._id.toString();
+
+    if (!isLeader) {
+      return res.status(403).json({
+        error: "You are not authorized to perform this action",
+      });
+    }
+    const { member } = req.body;
+
+    const memberIndex = project.members.indexOf(member);
+    if (memberIndex === -1) {
+      return res.status(409).json({
+        error: "The user is not a project member.",
+      });
+    }
+    project.members.splice(memberIndex, 1);
+
+    await project.save();
+    res.status(200).json({
+      message: "Member removed successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "An error occurred while updating the project.",
+    });
+  }
+};
+
+exports.getTasksByProject = async (req, res) => {
+  try {
+    const project = req.project;
+    const tasks = await Task.find({ project: project._id });
+    res.status(200).json({
+      tasks: tasks,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "An error occurred while retrieving the project tasks.",
+    });
+  }
+};
 exports.projectById = async (req, res, next, id) => {
   try {
     const project = await Project.findById(id);
