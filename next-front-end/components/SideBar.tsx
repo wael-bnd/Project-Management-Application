@@ -1,16 +1,20 @@
 import React from "react";
 import {
-  UserGroupIcon,
   ServerIcon,
   ClipboardCheckIcon,
-  ChartSquareBarIcon,
   CogIcon,
   TableIcon,
   InboxIcon,
   PresentationChartLineIcon,
 } from "@heroicons/react/outline";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-function SideBar(props) {
+function SideBar(...props) {
+  const router = useRouter();
+
+  // Check the active tab based on the current route
+  const isActive = (path) => router.pathname === path;
   return (
     <div className="fixed inset-y-0 left-0 bg-white w-40">
       <h1
@@ -29,19 +33,34 @@ function SideBar(props) {
           WeLoveSport
         </li>
         <li
-          className="flex justify-center items-center flex-col
-                py-7 text-gray-500"
+          className={
+            isActive("/backlog")
+              ? "flex justify-center items-center flex-col py-7 border-l-4 border-purple-500 text-purple-500 font-bold"
+              : "flex justify-center items-center flex-col py-7 text-gray-500"
+          }
         >
-          <ServerIcon className="w-7 h-7" />
-          Backlog
+          <ServerIcon
+            className={
+              isActive("/backlog") ? "w-7 h-7 text-purple-500" : "w-7 h-7"
+            }
+          />
+
+          <Link href={"/backlog"}> Backlog</Link>
         </li>
         <li
-          className="flex justify-center items-center flex-col
-                py-7 border-l-4 border-purple-500 text-purple-500
-                font-bold"
+          className={
+            isActive("/sprint")
+              ? "flex justify-center items-center flex-col py-7 border-l-4 border-purple-500 text-purple-500 font-bold"
+              : "flex justify-center items-center flex-col py-7 text-gray-500"
+          }
         >
-          <TableIcon className="w-7 h-7 text-purple-500" />
-          Active Sprint
+          <TableIcon
+            className={
+              isActive("/sprint") ? "w-7 h-7 text-purple-500" : "w-7 h-7"
+            }
+          />
+
+          <Link href={"/sprint"}> Active Sprint</Link>
         </li>
         <li
           className="flex justify-center items-center flex-col

@@ -17,9 +17,7 @@ export default function Home() {
   const [boardData, setBoardData] = useState(BoardData);
 
   useEffect(() => {
-    if (process.browser) {
-      setReady(true);
-    }
+    setReady(true);
   }, []);
 
   const onDragEnd = (re) => {
@@ -42,7 +40,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Agile</title>
+        <title>Active Sprint</title>
       </Head>
       <div className="p-10 flex flex-col h-screen">
         {/* Board header */}
