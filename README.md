@@ -1,21 +1,23 @@
-# Task Management Application
+# Project Management Application
 
-A web-based task management application built using the Node.js and React stack.
+A web-based project management application built using the Node.js and React stack.
 
 ## Project Description
 
-The Task Management Application allows users to create, update, and organize their tasks. It provides features such as user authentication, task CRUD operations, filtering and sorting tasks, real-time updates, notifications, a user-friendly interface, a backend API, data persistence, testing and validation, and deployment.
+The Project Management Application allows users to create, update, and organize their projects. It provides features such as user authentication, project CRUD operations, task management within projects, team collaboration, progress tracking, timelines, notifications, a user-friendly interface, a backend API, data persistence, testing and validation, and deployment.
 
 ## Key Features
 
 - User Authentication: Implement user authentication and authorization using Node.js and a library like Passport.js or JSON Web Tokens (JWT).
-- Task CRUD Operations: Allow users to create, read, update, and delete tasks. Users can set task priorities, due dates, and assign tasks to specific categories or projects.
-- Task Filtering and Sorting: Implement filtering and sorting options to help users organize and prioritize their tasks based on different criteria.
-- Real-time Updates: Use WebSockets or a library like Socket.IO to provide real-time updates to users when changes are made to their tasks or when new tasks are assigned.
-- Notifications: Implement a notification system to alert users about upcoming task deadlines or task assignments.
-- User Interface: Design a user-friendly and responsive interface using React and popular UI libraries like Material-UI or Ant Design. Implement drag-and-drop functionality for task organization.
-- Backend API: Create a RESTful API using Node.js and Express.js to handle client-server communication for task management operations.
-- Data Persistence: Use a database such as MongoDB or PostgreSQL to store user data, including tasks, categories, and user information.
+- Project CRUD Operations: Allow users to create, read, update, and delete projects. Users can set project deadlines, assign team members, track progress, and manage project resources.
+- Task Management Within Projects: Provide the ability to create, update, and assign tasks within projects. Users can set task priorities, due dates, and monitor task status and completion.
+- Team Collaboration: Enable team members to collaborate on projects by assigning tasks, sharing project-related files and documents, and communicating through project-specific channels.
+- Progress Tracking: Implement progress tracking and visualization features to help users monitor the status and progress of their projects and tasks.
+- Timelines: Provide visual timelines or Gantt charts to display project schedules, milestones, and dependencies.
+- Notifications: Implement a notification system to alert users about project updates, task assignments, approaching deadlines, and mentions within project discussions.
+- User Interface: Design a user-friendly and responsive interface using React and popular UI libraries like Material-UI or Ant Design. Implement intuitive project management workflows and navigation.
+- Backend API: Create a RESTful API using Node.js and Express.js to handle client-server communication for project management operations.
+- Data Persistence: Use a database such as MongoDB or PostgreSQL to store user data, including projects, tasks, user information, and project-related documents.
 - Testing and Validation: Write unit tests using testing frameworks like Jest or Mocha to ensure functionality and reliability. Implement form validation to enforce data integrity.
 - Deployment: Deploy the application to a cloud platform like Heroku or AWS for online accessibility.
 
@@ -32,8 +34,8 @@ The Task Management Application allows users to create, update, and organize the
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/Wael-Ibn-Douma/Task-Management-Application.git`
-2. Navigate to the project directory: `cd Task-Management-Application`
+1. Clone the repository: `git clone https://github.com/wael-bnd/Project-Management-Application.git`
+2. Navigate to the project directory: `cd Project-Management-Application`
 3. Install dependencies: `npm install`
 
 ## Usage
@@ -44,7 +46,7 @@ The Task Management Application allows users to create, update, and organize the
 
 ## Contributing
 
-Contributions to the Task Management Application are welcome! If you find any issues or have suggestions for improvements, please submit a pull request.
+Contributions to the Project Management Application are welcome! If you find any issues or have suggestions for improvements, please submit a pull request.
 
 ## License
 
