@@ -11,4 +11,8 @@ router.get("/:projectId", projectController.getProject);
 router.put("/:projectId", projectController.updateProject);
 router.delete("/:projectId", projectController.deleteProject);
 router.patch("/member/add/:projectId", projectController.addMemberToProject);
+router.patch(
+  "/member/remove/:projectId",
+  projectController.removeMemberToProject
+);
 module.exports = router;
