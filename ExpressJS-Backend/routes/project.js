@@ -15,4 +15,5 @@ router.patch(
   "/member/remove/:projectId",
   projectController.removeMemberToProject
 );
+router.get("/tasks/all/:projectId", projectController.getTasksByProject);
 module.exports = router;

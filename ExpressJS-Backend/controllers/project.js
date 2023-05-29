@@ -1,5 +1,6 @@
 const Project = require("../models/Project");
 const User = require("../models/User");
+const Task = require("../models/Task");
 
 exports.createProject = async (req, res) => {
   try {
@@ -167,6 +168,20 @@ exports.removeMemberToProject = async (req, res) => {
   }
 };
 
+exports.getTasksByProject = async (req, res) => {
+  try {
+    const project = req.project;
+    const tasks = await Task.find({ project: project._id });
+    res.status(200).json({
+      tasks: tasks,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "An error occurred while retrieving the project tasks.",
+    });
+  }
+};
 exports.projectById = async (req, res, next, id) => {
   try {
     const project = await Project.findById(id);
