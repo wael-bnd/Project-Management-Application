@@ -1,8 +1,8 @@
 import Layout from "../components/Layout";
 
-export default function Home() {
+export default function Issues() {
   return (
-    <Layout pageTitle="Agile" privateRoyte={true}>
+    <Layout pageTitle="Issues" privateRoyte={true}>
       <></>
     </Layout>
   );

@@ -1,18 +1,13 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 import Image from "next/dist/client/image";
-import {
-  ChevronDownIcon,
-  PlusIcon,
-  DotsVerticalIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/outline";
+import { DotsVerticalIcon } from "@heroicons/react/outline";
 import CardItem from "../components/CardItem";
 import BoardData from "../data/board-data.json";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Sprint() {
   const [ready, setReady] = useState(false);
   const [boardData, setBoardData] = useState(BoardData);
 
@@ -38,19 +33,12 @@ export default function Home() {
   };
 
   return (
-    <Layout>
-      <Head>
-        <title>Active Sprint</title>
-      </Head>
-      <div className="p-10 flex flex-col h-screen">
+    <Layout pageTitle="Active Sprint" privateRoyte={true}>
+      <div className="p-8 flex flex-col h-screen">
         {/* Board header */}
         <div className="flex flex-initial justify-between">
           <div className="flex items-center">
             <h4 className="text-4xl font-bold text-gray-600">Sprint Board</h4>
-            <ChevronDownIcon
-              className="w-9 h-9 text-gray-500 rounded-full
-            p-1 bg-white ml-5 shadow-xl"
-            />
           </div>
 
           <ul className="flex space-x-3">
@@ -59,8 +47,9 @@ export default function Home() {
                 src="https://randomuser.me/api/portraits/men/75.jpg"
                 width="36"
                 height="36"
-                objectFit="cover"
                 className=" rounded-full "
+                style={{ objectFit: "cover" }}
+                alt={"user"}
               />
             </li>
             <li>
@@ -68,8 +57,9 @@ export default function Home() {
                 src="https://randomuser.me/api/portraits/men/76.jpg"
                 width="36"
                 height="36"
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
                 className=" rounded-full "
+                alt={""}
               />
             </li>
             <li>
@@ -77,17 +67,10 @@ export default function Home() {
                 src="https://randomuser.me/api/portraits/men/78.jpg"
                 width="36"
                 height="36"
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
                 className=" rounded-full "
+                alt={""}
               />
-            </li>
-            <li>
-              <button
-                className="border border-dashed flex items-center w-9 h-9 border-gray-500 justify-center
-                rounded-full"
-              >
-                <PlusIcon className="w-5 h-5 text-gray-500" />
-              </button>
             </li>
           </ul>
         </div>
