@@ -1,5 +1,6 @@
 module.exports = {
-    images: {
-      domains: ['randomuser.me'],
-    },
-  }
+  images: {
+    domains: ["randomuser.me"],
+  },
+  reactStrictMode: false,
+};

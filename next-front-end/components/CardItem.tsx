@@ -1,13 +1,6 @@
 import React from "react";
 import Image from "next/dist/client/image";
-import {
-  ChevronDownIcon,
-  PlusIcon,
-  DotsVerticalIcon,
-  ChatAlt2Icon,
-  PaperClipIcon,
-  ClockIcon,
-} from "@heroicons/react/outline";
+import { ClockIcon } from "@heroicons/react/outline";
 import { Draggable } from "react-beautiful-dnd";
 
 function CardItem({ data, index, ...props }) {
@@ -55,8 +48,9 @@ function CardItem({ data, index, ...props }) {
                       src={ass.avt}
                       width="36"
                       height="36"
-                      objectFit="cover"
+                      style={{ objectFit: "cover" }}
                       className=" rounded-full "
+                      alt={""}
                     />
                   </li>
                 );
