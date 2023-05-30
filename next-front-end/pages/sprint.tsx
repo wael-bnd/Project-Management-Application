@@ -1,12 +1,7 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 import Image from "next/dist/client/image";
-import {
-  ChevronDownIcon,
-  PlusIcon,
-  DotsVerticalIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/outline";
+import { DotsVerticalIcon } from "@heroicons/react/outline";
 import CardItem from "../components/CardItem";
 import BoardData from "../data/board-data.json";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -38,7 +33,7 @@ export default function Sprint() {
   };
 
   return (
-    <Layout pageTitle="Active Sprint">
+    <Layout pageTitle="Active Sprint" privateRoyte={true}>
       <div className="p-8 flex flex-col h-screen">
         {/* Board header */}
         <div className="flex flex-initial justify-between">

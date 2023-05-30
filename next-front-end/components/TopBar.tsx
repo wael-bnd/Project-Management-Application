@@ -8,41 +8,23 @@ import {
 import { ChevronDownIcon, PhoneIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 
-const products = [
+const projects = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "We Love Sport",
+    description: "We Love Sport Native",
     href: "#",
     icon: FingerPrintIcon,
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
+    name: "Orderbee",
+    description: "Orderbee Native",
     href: "#",
     icon: FingerPrintIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowUpIcon,
   },
 ];
 const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PhoneIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
+  // { name: "Watch demo", href: "#", icon: PhoneIcon },
+  // { name: "Contact sales", href: "#", icon: PhoneIcon },
 ];
 
 function classNames(...classes) {
@@ -62,10 +44,10 @@ export default function TopBar() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src="logo.png" alt="Logo" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -98,7 +80,7 @@ export default function TopBar() {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {projects.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -124,7 +106,7 @@ export default function TopBar() {
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
@@ -134,7 +116,7 @@ export default function TopBar() {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Panel>
@@ -207,7 +189,7 @@ export default function TopBar() {
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
+                        {[...projects, ...callsToAction].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="a"
