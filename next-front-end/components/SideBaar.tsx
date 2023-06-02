@@ -87,7 +87,7 @@ export default function SideBaar({ collapsed, setCollapsed }: Props) {
             </div>
 
             <button
-              className="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-blue-500"
+              className="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-blue-500 hover:text-white"
               // 👇 set the collapsed state on click
               onClick={() => setCollapsed(!collapsed)}
             >
@@ -139,7 +139,7 @@ export default function SideBaar({ collapsed, setCollapsed }: Props) {
               </div>
             </div>
             <button
-              className="flex items-center justify-center ml-28 w-12 h-12 mt-2 rounded hover:bg-blue-500"
+              className="flex items-center justify-center ml-28 w-12 h-12 mt-2 rounded hover:bg-blue-500 hover:text-white"
               // 👇 set the collapsed state on click
               onClick={() => setCollapsed(!collapsed)}
             >
