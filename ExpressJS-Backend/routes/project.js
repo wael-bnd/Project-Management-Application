@@ -13,7 +13,7 @@ router.delete("/:projectId", projectController.deleteProject);
 router.patch("/member/add/:projectId", projectController.addMemberToProject);
 router.patch(
   "/member/remove/:projectId",
-  projectController.removeMemberToProject
+  projectController.removeMemberFromProject
 );
 router.get("/tasks/all/:projectId", projectController.getTasksByProject);
 router.get("/members/:projectId", projectController.getAllProjectMembers);

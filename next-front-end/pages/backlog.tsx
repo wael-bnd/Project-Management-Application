@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 
 export default function Backlog() {
   return (
-    <Layout pageTitle="Backlog" privateRoyte={true}>
+    <Layout pageTitle="Backlog" privateRoute={true}>
       <></>
     </Layout>
   );

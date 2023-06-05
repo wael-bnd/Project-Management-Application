@@ -33,7 +33,7 @@ export default function Sprint() {
   };
 
   return (
-    <Layout pageTitle="Active Sprint" privateRoyte={true}>
+    <Layout pageTitle="Active Sprint" privateRoute={true}>
       <div className="p-8 flex flex-col h-screen">
         {/* Board header */}
         <div className="flex flex-initial justify-between">

@@ -2,19 +2,24 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, BellIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-
-const navigation = [
-  { name: "Dashboard", href: "#", current: false },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
+import { useRouter } from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function TopBaar() {
+  const router = useRouter();
+  const navigation = [
+    { name: "Projects", href: "#", current: router.pathname === "/projects" },
+    { name: "Team", href: "#", current: router.pathname === "/team" },
+    { name: "Login", href: "/login", current: router.pathname === "/login" },
+    {
+      name: "Register",
+      href: "/register",
+      current: router.pathname === "/register",
+    },
+  ];
   return (
     <Disclosure
       as="nav"
@@ -48,7 +53,7 @@ export default function TopBaar() {
                     alt="Your Company"
                   />
                 </div>
-                <div className="hidden  sm:ml-6 sm:block">
+                <div className="hidden  sm:ml-auto sm:block">
                   <div className="flex  space-x-8">
                     {navigation.map((item) => (
                       <Link
@@ -56,8 +61,8 @@ export default function TopBaar() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-900 hover:bg-blue-600 hover:text-white",
+                            ? "bg-blue-500 text-white"
+                            : "text-gray-900 hover:bg-blue-500 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
