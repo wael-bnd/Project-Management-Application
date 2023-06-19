@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { expressjwt } = require("express-jwt");
 const User = require("../models/User");
+require("dotenv").config();
 
 exports.signup = async (req, res) => {
   try {
@@ -56,7 +57,7 @@ exports.signin = async (req, res) => {
     res.cookie("accessToken", token, { httpOnly: true });
 
     const { _id, firstName, lastName, jobTitle } = user;
-    return res.json({
+    return res.status(200).json({
       token,
       userData: { firstName, lastName, jobTitle },
     });
