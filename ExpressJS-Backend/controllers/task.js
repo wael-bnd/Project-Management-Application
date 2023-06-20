@@ -8,8 +8,6 @@ exports.createTask = async (req, res) => {
       req.body;
     const user = await User.findById(req.auth._id);
     const projectObj = await Project.findById(project);
-    console.log(user);
-    console.log(projectObj);
     if (
       (user.role !== "manager" || !projectObj.members.includes(req.auth._id)) &&
       projectObj.leader.toString() !== req.auth._id
