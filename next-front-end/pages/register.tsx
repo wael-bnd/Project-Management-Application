@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register } from "../services/AuthServices/AuthServices";
-import { error } from "console";
 
 export default function Register() {
   const validationSchema = Yup.object().shape({
@@ -18,10 +17,8 @@ export default function Register() {
       .max(20, "Last name must be between 3 and 20 characters"),
     email: Yup.string()
       .required("Email is required")
-      .min(8, "Email must be between 8 and 40 characters")
-      .max(40, "Email must be between 8 and 40 characters")
       .matches(
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3}){1,2}$/,
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{3,}@[a-zA-Z0-9-]{3,}(?:\.[a-zA-Z0-9-]{2,3}){1,2}$/,
         "Email must contain a valid email address"
       ),
     jobTitle: Yup.string().required("Job Title is required"),
@@ -45,7 +42,7 @@ export default function Register() {
             src="logo.png"
             alt="Your Company"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
             Sign Up
           </h2>
         </div>
@@ -75,10 +72,10 @@ export default function Register() {
           >
             <Form className="space-y-8">
               <div className="flex flex-row space-x-4">
-                <div>
+                <div className="flex-1">
                   <label
                     htmlFor="firstName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     First Name
                   </label>
@@ -98,10 +95,10 @@ export default function Register() {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <label
                     htmlFor="lastName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     Last Name
                   </label>
@@ -123,10 +120,10 @@ export default function Register() {
                 </div>
               </div>
               <div className="flex flex-row space-x-4">
-                <div>
+                <div className="flex-1">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     Email address
                   </label>
@@ -146,10 +143,10 @@ export default function Register() {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <label
                     htmlFor="jobTitle"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     Job Title
                   </label>
@@ -172,11 +169,11 @@ export default function Register() {
               </div>
 
               <div className="flex flex-row space-x-4">
-                <div>
+                <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-white"
                     >
                       Password
                     </label>
@@ -197,11 +194,11 @@ export default function Register() {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <label
                       htmlFor="repeatPassword"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-white"
                     >
                       Repeat Password
                     </label>
@@ -229,14 +226,14 @@ export default function Register() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign in
+                  Sign Up
                 </button>
               </div>
             </Form>
           </Formik>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account?{" "}
+          <p className="mt-10 text-center text-base text-white">
+            Already have an account ?{" "}
             <Link
               href="/login"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
