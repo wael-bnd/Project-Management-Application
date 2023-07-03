@@ -10,13 +10,15 @@ import {
   PresentationChartLineIcon,
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import { useSidebarContext } from "../contexts/SidebarContext";
 
 type Props = {
   collapsed: boolean;
   setCollapsed(collapsed: boolean): void;
 };
 
-export default function SideBaar({ collapsed, setCollapsed }: Props) {
+export default function SideBaar() {
+  const { collapsed, toggleSidebar } = useSidebarContext();
   const Icon = collapsed ? ChevronDoubleRightIcon : ChevronDoubleLeftIcon;
   const router = useRouter();
   const navigation = [
@@ -89,7 +91,7 @@ export default function SideBaar({ collapsed, setCollapsed }: Props) {
             <button
               className="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-blue-500 hover:text-white"
               // 👇 set the collapsed state on click
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => toggleSidebar()}
             >
               <Icon
                 className="w-6 h-6 stroke-current"
@@ -141,7 +143,7 @@ export default function SideBaar({ collapsed, setCollapsed }: Props) {
             <button
               className="flex items-center justify-center ml-28 w-12 h-12 mt-2 rounded hover:bg-blue-500 hover:text-white"
               // 👇 set the collapsed state on click
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => toggleSidebar()}
             >
               <Icon
                 className="w-6 h-6 stroke-current"

@@ -4,20 +4,16 @@ import TopBaar from "./TopBaar";
 import SideBar from "./SideBar";
 import SideBaar from "./SideBaar";
 import Head from "next/head";
+import { useSidebarContext } from "../contexts/SidebarContext";
 
 function Layout({ children, pageTitle, privateRoute }) {
-  const [collapsed, setSidebarCollapsed] = React.useState(false);
+  const { collapsed } = useSidebarContext();
   return (
-    <div className="min-w-full min-h-screen    bg-blue-100">
+    <div className=" min-h-screen bg-cover bg-my_bg_image">
       <TopBaar />
-      {privateRoute && (
-        <SideBaar
-          collapsed={collapsed}
-          setCollapsed={() => setSidebarCollapsed((prev) => !prev)}
-        />
-      )}
+      {privateRoute && <SideBaar />}
 
-      <main className="pl-40">
+      <main className={collapsed ? "pl-20" : "pl-40"}>
         <Head>
           <title>{pageTitle}</title>
         </Head>
