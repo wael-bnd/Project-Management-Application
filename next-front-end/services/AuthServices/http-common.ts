@@ -4,7 +4,8 @@ const API_URL = "http://localhost:8000/api/user";
 
 export default axios.create({
   baseURL: API_URL,
+  withCredentials: true,
   headers: {
-    Accept: "*/*",
+    "Content-Type": "application/json",
   },
 });

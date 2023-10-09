@@ -30,7 +30,12 @@ const {
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+  origin: ["http://localhost:3000"], // List of allowed origins
+  credentials: true, // Enable credentials (cookies)
+};
+
+app.use(cors(corsOptions));
 
 // Public routes
 app.use("/api/user", authRoutes);

@@ -15,26 +15,16 @@ export default function Register() {
       .required("Last name is required")
       .min(3, "Last name must be between 3 and 20 characters")
       .max(20, "Last name must be between 3 and 20 characters"),
-    email: Yup.string()
-      .required("Email is required")
-      .matches(
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{3,}@[a-zA-Z0-9-]{3,}(?:\.[a-zA-Z0-9-]{2,3}){1,2}$/,
-        "Email must contain a valid email address"
-      ),
+    email: Yup.string().required("Email is required"),
     jobTitle: Yup.string().required("Job Title is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,
-        "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"
-      ),
+    password: Yup.string().required("Password is required"),
     repeatPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Repeat Password is required"),
   });
 
   return (
-    <Layout pageTitle="Register" privateRoute={true}>
+    <Layout pageTitle="Register" privateRoute={false}>
       <div className="py-24">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img

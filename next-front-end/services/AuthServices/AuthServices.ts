@@ -4,7 +4,7 @@ import { ILogin } from "../interfaces/ILogin";
 
 export function login(loginData: ILogin) {
   console.log(loginData);
-  return http.post("/signin", login);
+  return http.post("/signin", loginData);
 }
 
 export function register(userData: IRegister) {

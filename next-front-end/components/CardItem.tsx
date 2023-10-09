@@ -41,11 +41,11 @@ function CardItem({ data, index, ...props }) {
             </div>
 
             <ul className="flex space-x-3">
-              {data.assignees.map((ass, index) => {
+              {data.assignees.map((i, index) => {
                 return (
                   <li key={index}>
                     <Image
-                      src={ass.avt}
+                      src={i.avt}
                       width="36"
                       height="36"
                       style={{ objectFit: "cover" }}
