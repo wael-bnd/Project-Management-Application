@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 import { ClockIcon } from "@heroicons/react/outline";
 import { Draggable } from "react-beautiful-dnd";
 
@@ -16,10 +16,9 @@ function CardItem({ data, index, ...props }) {
           <label
             className={`bg-gradient-to-r
               px-2 py-1 rounded text-white text-sm
-              ${
-                data.priority === 0
-                  ? "from-blue-600 to-blue-400"
-                  : data.priority === 1
+              ${data.priority === 0
+                ? "from-blue-600 to-blue-400"
+                : data.priority === 1
                   ? "from-green-600 to-green-400"
                   : "from-red-600 to-red-400"
               }
@@ -28,8 +27,8 @@ function CardItem({ data, index, ...props }) {
             {data.priority === 0
               ? "Test"
               : data.priority === 1
-              ? "Story"
-              : "Bug"}
+                ? "Story"
+                : "Bug"}
           </label>
           <h5 className="text-md my-3 text-lg leading-6">{data.title}</h5>
           <div className="flex justify-between">

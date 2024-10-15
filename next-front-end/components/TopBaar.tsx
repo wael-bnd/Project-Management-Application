@@ -13,12 +13,7 @@ export default function TopBaar() {
   const navigation = [
     { name: "Projects", href: "#", current: router.pathname === "/projects" },
     { name: "Team", href: "#", current: router.pathname === "/team" },
-    { name: "Login", href: "/login", current: router.pathname === "/login" },
-    {
-      name: "Register",
-      href: "/register",
-      current: router.pathname === "/register",
-    },
+
   ];
   return (
     <Disclosure
@@ -133,7 +128,7 @@ export default function TopBaar() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            href="#"
+                            href="/login"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

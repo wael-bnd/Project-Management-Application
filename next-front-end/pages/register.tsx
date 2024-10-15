@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register } from "../services/AuthServices/AuthServices";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const validationSchema = Yup.object().shape({
@@ -32,9 +33,9 @@ export default function Register() {
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Repeat Password is required"),
   });
-
+  const router = useRouter();
   return (
-    <Layout pageTitle="Register" privateRoute={true}>
+    <Layout pageTitle="Register" privateRoute={false}>
       <div className="py-24">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -64,7 +65,8 @@ export default function Register() {
               console.log(values);
               try {
                 let registerRes = await register(values);
-                console.log(registerRes);
+
+                router.push("/login")
               } catch (error) {
                 console.log(error);
               }

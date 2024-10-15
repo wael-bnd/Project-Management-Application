@@ -8,6 +8,7 @@
   "dependencies": {
     "@headlessui/react": "^0.0.0-dev.0ce63d8",
     "@heroicons/react": "v1",
+    "@next/swc-win32-x64-msvc": "^15.0.0-rc.1",
     "@tailwindcss/forms": "^0.3.3",
     "autoprefixer": "10.4.5",
     "axios": "^1.4.0",

@@ -30,7 +30,7 @@ function SideBar(...props) {
             <InboxIcon
               className={isActive("/") ? "w-7 h-7 text-purple-500" : "w-7 h-7"}
             />
-            WeLoveSport
+            Project name
           </li>
         </Link>
         <Link href={"/backlog"}>

@@ -10,7 +10,7 @@ function Layout({ children, pageTitle, privateRoute }) {
   const { collapsed } = useSidebarContext();
   return (
     <div className=" min-h-screen bg-cover bg-my_bg_image">
-      <TopBaar />
+      {privateRoute && <TopBaar />}
       {privateRoute && <SideBaar />}
 
       <main className={collapsed ? "pl-20" : "pl-40"}>
